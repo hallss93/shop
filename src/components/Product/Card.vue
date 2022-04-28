@@ -126,10 +126,7 @@ p {
           cursor: pointer;
           border: 1px solid #ccc;
 
-          &:hover {
-            background: #ff000033;
-          }
-
+          &:hover,
           &.active {
             color: white;
             background: #0080009e;
