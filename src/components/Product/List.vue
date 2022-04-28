@@ -8,6 +8,7 @@
           :key="index"
           :product="product"
           :isFavorite="isFavorite(product)"
+          :inCart="inCart(product)"
         />
       </div>
     </b-container>
@@ -26,8 +27,13 @@ export default class ProductList extends Vue {
   get listProducts(): Product[] {
     return this.$store.getters["products/listProducts"];
   }
+
   get favoriteProducts(): number[] {
     return this.$store.getters["products/favoriteProducts"];
+  }
+
+  get cart(): Product[] {
+    return this.$store.getters["products/cart"];
   }
 
   listAllProducts() {
@@ -40,6 +46,10 @@ export default class ProductList extends Vue {
 
   isFavorite(product: Product) {
     return this.favoriteProducts.find((item) => item === product.id) ? true : false;
+  }
+
+  inCart(product: Product) {
+    return this.cart.find((item) => item.id === product.id) ? true : false;
   }
 }
 </script>

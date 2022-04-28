@@ -17,4 +17,12 @@ async function unFavorite({ commit }, id) {
   commit("unSetProductFavorite", id);
 }
 
-export default { listAllProducts, favorite, unFavorite };
+async function addCart({ commit }, product) {
+  commit("addCart", product);
+}
+
+async function removeCart({ commit }, product) {
+  commit("removeCart", product);
+}
+
+export default { listAllProducts, favorite, unFavorite, addCart, removeCart };
