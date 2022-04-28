@@ -64,8 +64,38 @@ export default class ProductList extends Vue {
 .grid {
   display: grid;
   overflow: hidden;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-column-gap: 5px;
   grid-row-gap: 5px;
+}
+
+@media only screen and (min-width: 576px) {
+  .grid {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .grid {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .grid {
+    display: grid;
+    overflow: hidden;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+  }
 }
 </style>
