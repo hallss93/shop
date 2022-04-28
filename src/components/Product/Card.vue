@@ -3,8 +3,8 @@
     <b-card class="mb-3">
       <div class="product-container">
         <div class="container-heart">
-          <div class="heart-icon">
-            <b-icon icon="heart"></b-icon>
+          <div class="heart-icon" :class="{ active: isFavorite }" @click="favorite()">
+            <b-icon :icon="isFavorite ? 'heart-fill' : 'heart'"></b-icon>
           </div>
         </div>
         <div class="product-img">
@@ -40,6 +40,15 @@ import Product from "@/models/Product";
 @Component({})
 export default class ProductCard extends Vue {
   @Prop() readonly product: Product | undefined;
+  @Prop({ default: false }) readonly isFavorite: boolean | undefined;
+
+  favorite(): void {
+    if (this.isFavorite) {
+      this.$store.dispatch("products/unFavorite", this.product?.id);
+    } else {
+      this.$store.dispatch("products/favorite", this.product?.id);
+    }
+  }
 }
 </script>
 
@@ -92,6 +101,7 @@ p {
 
           &:hover,
           &.active {
+            color: red;
             background: #ff000033;
           }
         }

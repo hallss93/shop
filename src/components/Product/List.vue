@@ -3,7 +3,12 @@
     <b-container>
       <h2 class="title">Produtos</h2>
       <div class="grid">
-        <Card v-for="(product, index) in listProducts" :key="index" :product="product" />
+        <Card
+          v-for="(product, index) in listProducts"
+          :key="index"
+          :product="product"
+          :isFavorite="isFavorite(product)"
+        />
       </div>
     </b-container>
   </div>
@@ -21,6 +26,9 @@ export default class ProductList extends Vue {
   get listProducts(): Product[] {
     return this.$store.getters["products/listProducts"];
   }
+  get favoriteProducts(): number[] {
+    return this.$store.getters["products/favoriteProducts"];
+  }
 
   listAllProducts() {
     this.$store.dispatch("products/listAllProducts");
@@ -28,6 +36,10 @@ export default class ProductList extends Vue {
 
   created() {
     this.listAllProducts();
+  }
+
+  isFavorite(product: Product) {
+    return this.favoriteProducts.find((item) => item === product.id) ? true : false;
   }
 }
 </script>

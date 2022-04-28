@@ -9,4 +9,12 @@ async function listAllProducts({ commit }) {
   }
 }
 
-export default { listAllProducts };
+async function favorite({ commit }, id) {
+  commit("setProductFavorite", id);
+}
+
+async function unFavorite({ commit }, id) {
+  commit("unSetProductFavorite", id);
+}
+
+export default { listAllProducts, favorite, unFavorite };
