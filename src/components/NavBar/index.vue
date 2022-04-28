@@ -1,12 +1,18 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="light" variant="white">
+    <b-navbar toggleable="lg" type="light" variant="white" style="justify-content: space-between">
       <div class="container-icon">
         <img alt="Casas Bahia" class="icon-img" src="@/assets/casas-bahia.png" />
         <div class="store-text">
           <p class="store-name">Casas Bahia</p>
           <p class="store-description">Loja Online</p>
         </div>
+      </div>
+      <div>
+        <b-button variant="outline" v-b-toggle.sidebar-right>
+          <span class="font-weight-bold"> $ {{ cartSum }} </span>
+          <b-icon icon="cart"></b-icon>
+        </b-button>
       </div>
     </b-navbar>
   </div>
@@ -16,7 +22,11 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class NavBar extends Vue {}
+export default class NavBar extends Vue {
+  get cartSum(): number {
+    return this.$store.getters["products/cartSum"];
+  }
+}
 </script>
 
 <style lang="scss">
