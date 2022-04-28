@@ -13,7 +13,4 @@
   color: #2c3e50;
 }
 
-p {
-  margin: 0px !important;
-}
 </style>

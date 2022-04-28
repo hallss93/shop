@@ -20,6 +20,9 @@ export default class NavBar extends Vue {}
 </script>
 
 <style lang="scss">
+p {
+  margin: 0px;
+}
 .navbar {
   padding: 30px 0px;
   box-shadow: 5px 3px 5px #ccc;

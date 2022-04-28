@@ -2,9 +2,9 @@
   <div>
     <b-container>
       <h2 class="title">Produtos</h2>
-      <b-row>
+      <div class="grid">
         <Card v-for="(product, index) in listProducts" :key="index" :product="product" />
-      </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -37,5 +37,13 @@ export default class ProductList extends Vue {
   margin: 40px 0px;
   text-align: left;
   font-weight: bold;
+}
+
+.grid {
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
 }
 </style>
