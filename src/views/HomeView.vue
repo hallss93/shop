@@ -1,29 +1,19 @@
 <template>
   <div class="home">
     <NavBar />
+    <ProductList />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import NavBar from "@/components/NavBar/index.vue";
-import Product from "@/models/Product";
+import ProductList from "@/components/Product/List.vue";
 @Component({
   components: {
     NavBar,
+    ProductList,
   },
 })
-export default class HomeView extends Vue {
-  get listProducts(): Product[] {
-    return this.$store.getters["products/listProducts"];
-  }
-
-  listAllProducts() {
-    this.$store.dispatch("products/listAllProducts");
-  }
-
-  created() {
-    this.listAllProducts();
-  }
-}
+export default class HomeView extends Vue {}
 </script>
