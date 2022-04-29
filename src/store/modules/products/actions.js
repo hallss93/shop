@@ -5,7 +5,6 @@ async function listAllProducts({ commit }) {
     commit("setListProducts", data);
     return Promise.resolve(data);
   } catch (error) {
-    console.log(error);
     return Promise.reject(error);
   } finally {
     commit("setLoading", false);

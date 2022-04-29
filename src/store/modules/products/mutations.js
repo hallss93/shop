@@ -17,7 +17,6 @@ function setListProducts(state, payload) {
     }
     state.basket = basket;
   } catch (e) {
-    console.log(e);
     state.basket = [];
   }
 }
