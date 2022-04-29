@@ -5,6 +5,7 @@ import router from './router';
 import store from './store';
 import './plugins/bootstrap'
 import './plugins/loading'
+import './plugins/sweetalert'
 
 Vue.config.productionTip = false;
 

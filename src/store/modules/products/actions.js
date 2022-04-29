@@ -28,4 +28,8 @@ async function removeBasket({ commit }, product) {
   commit("removeBasket", product);
 }
 
-export default { listAllProducts, favorite, unFavorite, addBasket, removeBasket };
+async function clearBasket({ commit }) {
+  commit("clearBasket");
+}
+
+export default { listAllProducts, favorite, unFavorite, addBasket, removeBasket, clearBasket };

@@ -17,7 +17,7 @@
         </ul>
       </b-row>
       <b-row>
-        <b-button variant="success">Checkout</b-button>
+        <b-button variant="success" @click="checkout()">Checkout</b-button>
       </b-row>
     </b-container>
   </div>
@@ -32,6 +32,7 @@ import Product from "@/models/Product";
   components: { Card },
 })
 export default class BasketList extends Vue {
+  [x: string]: any;
   get basket(): Product[] {
     return this.$store.getters["products/basket"];
   }
@@ -42,6 +43,11 @@ export default class BasketList extends Vue {
 
   get tax(): number {
     return Number((this.basketSum / (100 / 5)).toFixed(2));
+  }
+
+  checkout(): void {
+    this.$swal("Purchase made successfully!");
+    this.$emit("hide");
   }
 }
 </script>
