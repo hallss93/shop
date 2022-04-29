@@ -1,5 +1,6 @@
 export default {
   listProducts: [],
   favoriteProducts: [],
-  cart: [],
+  basket: [],
+  isLoading: true,
 };

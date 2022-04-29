@@ -1,11 +1,14 @@
 async function listAllProducts({ commit }) {
   try {
+    commit("setLoading", true);
     const { data } = await this.axios.get(`https://fakestoreapi.com/products`);
     commit("setListProducts", data);
     return Promise.resolve(data);
   } catch (error) {
     console.log(error);
     return Promise.reject(error);
+  } finally {
+    commit("setLoading", false);
   }
 }
 
@@ -17,12 +20,12 @@ async function unFavorite({ commit }, id) {
   commit("unSetProductFavorite", id);
 }
 
-async function addCart({ commit }, product) {
-  commit("addCart", product);
+async function addBasket({ commit }, product) {
+  commit("addBasket", product);
 }
 
-async function removeCart({ commit }, product) {
-  commit("removeCart", product);
+async function removeBasket({ commit }, product) {
+  commit("removeBasket", product);
 }
 
-export default { listAllProducts, favorite, unFavorite, addCart, removeCart };
+export default { listAllProducts, favorite, unFavorite, addBasket, removeBasket };

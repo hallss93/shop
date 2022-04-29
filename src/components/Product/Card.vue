@@ -20,8 +20,8 @@
               </b-col>
               <b-col>
                 <div class="align-flex-end">
-                  <div class="plus-icon" @click="addCart()" :class="{ active: inCart }">
-                    <b-icon :icon="inCart ? 'check' : 'plus'"></b-icon>
+                  <div class="plus-icon" @click="addBasket()" :class="{ active: inBasket }">
+                    <b-icon :icon="inBasket ? 'check' : 'plus'"></b-icon>
                   </div>
                 </div>
               </b-col>
@@ -41,7 +41,7 @@ import Product from "@/models/Product";
 export default class ProductCard extends Vue {
   @Prop() readonly product: Product | undefined;
   @Prop({ default: false }) readonly isFavorite: boolean | undefined;
-  @Prop({ default: false }) readonly inCart: boolean | undefined;
+  @Prop({ default: false }) readonly inBasket: boolean | undefined;
 
   favorite(): void {
     if (this.isFavorite) {
@@ -51,11 +51,11 @@ export default class ProductCard extends Vue {
     }
   }
 
-  addCart(): void {
-    if (this.inCart) {
-      this.$store.dispatch("products/removeCart", this.product);
+  addBasket(): void {
+    if (this.inBasket) {
+      this.$store.dispatch("products/removeBasket", this.product);
     } else {
-      this.$store.dispatch("products/addCart", this.product);
+      this.$store.dispatch("products/addBasket", this.product);
     }
   }
 }

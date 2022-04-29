@@ -10,7 +10,7 @@
       </div>
       <div>
         <b-button variant="outline" v-b-toggle.sidebar-right>
-          <span class="font-weight-bold"> $ {{ cartSum }} </span>
+          <span class="font-weight-bold"> $ {{ basketSum }} </span>
           <b-icon icon="cart"></b-icon>
         </b-button>
       </div>
@@ -23,8 +23,8 @@ import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 export default class NavBar extends Vue {
-  get cartSum(): number {
-    return this.$store.getters["products/cartSum"];
+  get basketSum(): number {
+    return this.$store.getters["products/basketSum"];
   }
 }
 </script>

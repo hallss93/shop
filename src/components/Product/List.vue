@@ -1,14 +1,22 @@
 <template>
   <div>
     <b-container>
-      <h2 class="title">Produtos</h2>
+      <b-row class="mt-4 mb-4" align-v="center">
+        <b-col>
+          <h2 class="title">Produtos</h2>
+        </b-col>
+        <b-col>
+          <b-form-input v-model="text" placeholder="Search Products"></b-form-input>
+        </b-col>
+      </b-row>
+      <h6 v-if="filteredProducts.length === 0">No products found</h6>
       <div class="grid">
         <Card
-          v-for="(product, index) in listProducts"
+          v-for="(product, index) in filteredProducts"
           :key="index"
           :product="product"
           :isFavorite="isFavorite(product)"
-          :inCart="inCart(product)"
+          :inBasket="inBasket(product)"
         />
       </div>
     </b-container>
@@ -16,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import Card from "@/components/Product/Card.vue";
 import Product from "@/models/Product";
 
@@ -24,6 +32,21 @@ import Product from "@/models/Product";
   components: { Card },
 })
 export default class ProductList extends Vue {
+  text = "";
+  filteredProducts: Product[] = [];
+
+  @Watch("listProducts")
+  onChangeListProducts(list: Product[]) {
+    this.filteredProducts = list;
+  }
+
+  @Watch("text")
+  onChangeText(text: string) {
+    this.filteredProducts = this.listProducts.filter(
+      (item) => item.title.toUpperCase().indexOf(text.toUpperCase()) >= 0
+    );
+  }
+
   get listProducts(): Product[] {
     return this.$store.getters["products/listProducts"];
   }
@@ -32,8 +55,8 @@ export default class ProductList extends Vue {
     return this.$store.getters["products/favoriteProducts"];
   }
 
-  get cart(): Product[] {
-    return this.$store.getters["products/cart"];
+  get basket(): Product[] {
+    return this.$store.getters["products/basket"];
   }
 
   listAllProducts() {
@@ -48,15 +71,16 @@ export default class ProductList extends Vue {
     return this.favoriteProducts.find((item) => item === product.id) ? true : false;
   }
 
-  inCart(product: Product) {
-    return this.cart.find((item) => item.id === product.id) ? true : false;
+  inBasket(product: Product) {
+    return this.basket.find((item) => item.id === product.id) ? true : false;
   }
 }
 </script>
 
 <style lang="scss">
 .title {
-  margin: 40px 0px;
+  margin: 0px;
+  padding: 0px;
   text-align: left;
   font-weight: bold;
 }
