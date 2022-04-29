@@ -1,5 +1,8 @@
 # shop
 
+## Project online
+The project is in production at: [https://shop-hallss93.vercel.app/](https://shop-hallss93.vercel.app/).
+
 ## Project setup
 ```
 yarn install
